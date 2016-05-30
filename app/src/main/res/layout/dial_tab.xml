@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:paddingLeft="36dip"
+              android:paddingRight="36dip"
+    >
+
+
+    <LinearLayout
+        android:id="@+id/ll_tab_home"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+
+        <ImageView
+            android:id="@+id/iv_home"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:src="@drawable/call_btn_mute"
+            />
+
+        <TextView
+            android:id="@+id/tv_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="静音"
+            android:textColor="#ffffff"
+            android:textSize="12sp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_tab_customer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginLeft="36dip"
+        >
+
+        <ImageView
+            android:id="@+id/iv_customer"
+            android:layout_width="157dip"
+            android:layout_height="55dip"
+            android:src="@drawable/call_btn_hang_up"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_tab_find"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginLeft="36dip"
+        >
+
+        <ImageView
+            android:id="@+id/iv_find"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:src="@drawable/call_btn_handsfree"
+            />
+
+        <TextView
+            android:id="@+id/tv_find"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="免提"
+            android:textColor="#ffffff"
+            android:textSize="13sp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
