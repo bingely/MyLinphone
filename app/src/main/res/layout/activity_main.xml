@@ -6,10 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/dial"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="拨打"/>
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/dial_telphone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="拨打同一个无线网下的手机号"/>
+
+        <Button
+            android:id="@+id/dial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="拨打linphone的sip手机号"/>
+    </LinearLayout>
+
 </RelativeLayout>
