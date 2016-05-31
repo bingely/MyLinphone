@@ -38,32 +38,38 @@ public class MenuFragment extends Fragment implements OnClickListener {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.setup_menu, container, false);
-		
+		init(view);
+		return view;
+	}
+
+	private void init(View view) {
+		// 在linphone注册sip
 		createAccount = (ImageView) view.findViewById(R.id.setup_create_account);
 		createAccount.setOnClickListener(this);
-		
+
+		// 已有在linphone的帐号
 		logLinphoneAccount = (ImageView) view.findViewById(R.id.setup_login_linphone);
 		if (getResources().getBoolean(R.bool.hide_linphone_accounts_wizard)) {
 			view.findViewById(R.id.setup_login_linphone_layout).setVisibility(View.GONE);
 		} else {
 			logLinphoneAccount.setOnClickListener(this);
 		}
-		
+
+		// 存在的sip帐号
 		logGenericAccount = (ImageView) view.findViewById(R.id.setup_login_generic);
 		if (getResources().getBoolean(R.bool.hide_generic_accounts_wizard)) {
 			view.findViewById(R.id.setup_login_generic_layout).setVisibility(View.GONE);
 		} else {
 			logGenericAccount.setOnClickListener(this);
 		}
-		
+
+		// 下载配置
 		remoteProvisioning = (ImageView) view.findViewById(R.id.setup_remote_provisioning);
 		if (getResources().getBoolean(R.bool.hide_remote_provisioning_in_wizard)) {
 			view.findViewById(R.id.setup_remote_provisioning_layout).setVisibility(View.GONE);
 		} else {
 			remoteProvisioning.setOnClickListener(this);
 		}
-		
-		return view;
 	}
 
 	@Override

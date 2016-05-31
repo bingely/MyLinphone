@@ -65,18 +65,22 @@
 	    	android:textColor="@color/text_contrast" />
         
     </LinearLayout>
-    
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        
-	    <TableLayout
-	        android:id="@+id/controls"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:stretchColumns="*"
-	        android:paddingTop="20dp"/>
-    
-    </ScrollView>
+
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<TableLayout
+			android:id="@+id/controls"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:stretchColumns="*"
+			android:paddingTop="20dp">
+
+			<include layout="@layout/contact_control_row"/>
+
+		</TableLayout>
+	</ScrollView>
+
 
 </LinearLayout>

@@ -4,15 +4,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.Button;
 
-import org.linphone.core.LinphoneCall;
+import org.linphone.core.LinphoneCore;
+import org.linphone.core.LinphoneProxyConfig;
 import org.linphone.mediastream.Log;
+import org.linphone.ui.AddressText;
 
 import static android.content.Intent.ACTION_MAIN;
 
 public class MainActivity extends AppCompatActivity {
     private static final int CALL_ACTIVITY = 19;
+    private Button mDial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,41 +27,9 @@ public class MainActivity extends AppCompatActivity {
         //initView();
         init();
 
-        findViewById(R.id.dial).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "hello", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MainActivity.this, InMyCallActivity.class));
-            }
-        });
+        mDial = (Button) findViewById(R.id.dial);
+        mDial.setOnClickListener(dialListener);
 
-    }
-
-    private void initView() {
-        findViewById(R.id.dial).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               /* LinphoneCore lc = LinphoneManager.getLc();
-                *//*if (lc.getCurrentCall() == null) {
-                    return;
-                }*//*
-                // 向指定的电话打电话
-                lc.transferCall(lc.getCurrentCall(), "13537688026");
-                LinphoneActivity.instance().resetClassicMenuLayoutAndGoBackToCallIfStillRunning();
-
-
-                if (LinphoneManager.isInstanciated() && LinphoneManager.getLc().getCallsNb() > 0) {
-                    LinphoneCall call = LinphoneManager.getLc().getCalls()[0];
-                    if (call.getState() == LinphoneCall.State.IncomingReceived) {
-                        startActivity(new Intent(MainActivity.this, IncomingCallActivity.class));
-                    } else {
-                        startIncallActivity(call);
-                    }
-                }*/
-
-                startActivity(new Intent(MainActivity.this,InCallActivity.class));
-            }
-        });
     }
 
     private void init() {
@@ -76,10 +47,29 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void startIncallActivity(LinphoneCall call) {
-        Intent intent = new Intent(this, InCallActivity.class);
-        /*intent.putExtra("VideoEnabled", true);
-        startActivityForResult(intent, CALL_ACTIVITY);*/
-    }
 
+    private View.OnClickListener dialListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            LinphoneCore lc = LinphoneManager.getLcIfManagerNotDestroyedOrNull();
+            if (lc != null) {
+                LinphoneProxyConfig lpc = lc.getDefaultProxyConfig();
+                String to;
+                if (lpc != null) {
+                    String address = "13537688026";
+                    if (address.contains("@")) {
+                        to = lpc.normalizePhoneNumber(address.split("@")[0]);
+                    } else {
+                        to = lpc.normalizePhoneNumber(address);
+                    }
+                } else {
+                    to = "bingley666@sip.linphone.org";
+                }
+
+                LinphoneManager.AddressType address = new AddressText(MainActivity.this, null);
+                address.setText(to);
+                LinphoneManager.getInstance().newOutgoingCall(address);
+            }
+        }
+    };
 }

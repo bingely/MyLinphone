@@ -36,6 +36,7 @@ import org.linphone.ui.CallButton;
 import org.linphone.ui.EraseButton;
 
 /**
+ *  拨打电话页面
  * @author Sylvain Berfini
  */
 public class DialerFragment extends Fragment {
@@ -136,7 +137,7 @@ public class DialerFragment extends Fragment {
 	public void onResume() {
 		super.onResume();
 		
-		if (LinphoneActivity.isInstanciated()) {
+		if (LinphoneActivity.isInstanciated()) {  // 哦这个其实就相当于进行LinphoneActivity非空判断（fragment所依赖的大容器Linphone是否为空，呵呵呵呵）
 			LinphoneActivity.instance().selectMenu(FragmentsAvailable.DIALER);
 			LinphoneActivity.instance().updateDialerFragment(this);
 			LinphoneActivity.instance().showStatusBar();

@@ -79,58 +79,63 @@ public class ContactsFragment extends Fragment implements OnClickListener, OnIte
         Bundle savedInstanceState) {
 		mInflater = inflater;
         View view = inflater.inflate(R.layout.contacts_list, container, false);
-        
-        if (getArguments() != null) {
-	        editOnClick = getArguments().getBoolean("EditOnClick");
-	        sipAddressToAdd = getArguments().getString("SipAddress");
-	        
-	        onlyDisplayChatAddress = getArguments().getBoolean("ChatAddressOnly");
-        }
-        
-        noSipContact = (TextView) view.findViewById(R.id.noSipContact);
-        noContact = (TextView) view.findViewById(R.id.noContact);
-        
-        contactsList = (ListView) view.findViewById(R.id.contactsList);
-        contactsList.setOnItemClickListener(this);
-        
-        allContacts = (TextView) view.findViewById(R.id.allContacts);
-        allContacts.setOnClickListener(this);
-        
-        linphoneContacts = (TextView) view.findViewById(R.id.linphoneContacts);
-        linphoneContacts.setOnClickListener(this);
-        
-        newContact = (TextView) view.findViewById(R.id.newContact);
-        newContact.setOnClickListener(this);
-        newContact.setEnabled(LinphoneManager.getLc().getCallsNb() == 0);
-        
-        allContacts.setEnabled(onlyDisplayLinphoneContacts);
-        linphoneContacts.setEnabled(!allContacts.isEnabled());
-		
-        
+
+		init(view);
+
+		return view;
+    }
+
+	private void init(View view) {
+		if (getArguments() != null) {
+			editOnClick = getArguments().getBoolean("EditOnClick");
+			sipAddressToAdd = getArguments().getString("SipAddress");
+
+			onlyDisplayChatAddress = getArguments().getBoolean("ChatAddressOnly");
+		}
+
+		noSipContact = (TextView) view.findViewById(R.id.noSipContact);
+		noContact = (TextView) view.findViewById(R.id.noContact);
+
+		contactsList = (ListView) view.findViewById(R.id.contactsList);
+		contactsList.setOnItemClickListener(this);
+
+		allContacts = (TextView) view.findViewById(R.id.allContacts);
+		allContacts.setOnClickListener(this);
+
+		linphoneContacts = (TextView) view.findViewById(R.id.linphoneContacts);
+		linphoneContacts.setOnClickListener(this);
+
+		newContact = (TextView) view.findViewById(R.id.newContact);
+		newContact.setOnClickListener(this);
+		newContact.setEnabled(LinphoneManager.getLc().getCallsNb() == 0);
+
+		allContacts.setEnabled(onlyDisplayLinphoneContacts);
+		linphoneContacts.setEnabled(!allContacts.isEnabled());
+
+
 		clearSearchField = (ImageView) view.findViewById(R.id.clearSearchField);
 		clearSearchField.setOnClickListener(this);
-		
+
 		searchField = (EditText) view.findViewById(R.id.searchField);
 		searchField.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				
+
 			}
-			
+
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-				
+										  int after) {
+
 			}
-			
+
 			@Override
 			public void afterTextChanged(Editable s) {
 				searchContacts(searchField.getText().toString());
 			}
 		});
 
-		return view;
-    }
+	}
 
 	@Override
 	public void onClick(View v) {

@@ -64,36 +64,41 @@ public class HistoryFragment extends Fragment implements OnClickListener, OnChil
         Bundle savedInstanceState) {
 		mInflater = inflater;
         View view = inflater.inflate(R.layout.history, container, false);
-        
-        noCallHistory = (TextView) view.findViewById(R.id.noCallHistory);
-        noMissedCallHistory = (TextView) view.findViewById(R.id.noMissedCallHistory);
-        
-        historyList = (ExpandableListView) view.findViewById(R.id.historyList);
-        historyList.setOnChildClickListener(this);
-        historyList.setOnGroupClickListener(this);
-        
-        deleteAll = (TextView) view.findViewById(R.id.deleteAll);
-        deleteAll.setOnClickListener(this);
-        deleteAll.setVisibility(View.INVISIBLE);
-        
-        allCalls = (TextView) view.findViewById(R.id.allCalls);
-        allCalls.setOnClickListener(this);
-        
-        missedCalls = (TextView) view.findViewById(R.id.missedCalls);
-        missedCalls.setOnClickListener(this);
-        
-        allCalls.setEnabled(false);
-        onlyDisplayMissedCalls = false;
-        
-        edit = (TextView) view.findViewById(R.id.edit);
-        edit.setOnClickListener(this);
-        
-        ok = (TextView) view.findViewById(R.id.ok);
-        ok.setOnClickListener(this);
-        
+
+		init(view);
+
 		return view;
     }
-	
+
+	private void init(View view) {
+		noCallHistory = (TextView) view.findViewById(R.id.noCallHistory);
+		noMissedCallHistory = (TextView) view.findViewById(R.id.noMissedCallHistory);
+
+		historyList = (ExpandableListView) view.findViewById(R.id.historyList);
+		historyList.setOnChildClickListener(this);
+		historyList.setOnGroupClickListener(this);
+
+		deleteAll = (TextView) view.findViewById(R.id.deleteAll);
+		deleteAll.setOnClickListener(this);
+		deleteAll.setVisibility(View.INVISIBLE);
+
+		allCalls = (TextView) view.findViewById(R.id.allCalls);
+		allCalls.setOnClickListener(this);
+
+		missedCalls = (TextView) view.findViewById(R.id.missedCalls);
+		missedCalls.setOnClickListener(this);
+
+		allCalls.setEnabled(false);
+		onlyDisplayMissedCalls = false;
+
+		edit = (TextView) view.findViewById(R.id.edit);
+		edit.setOnClickListener(this);
+
+		ok = (TextView) view.findViewById(R.id.ok);
+		ok.setOnClickListener(this);
+
+	}
+
 	private boolean hideHistoryListAndDisplayMessageIfEmpty() {
 		if (mLogs.size() == 0) {
 			if (onlyDisplayMissedCalls) {
