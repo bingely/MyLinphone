@@ -1,5 +1,6 @@
 package org.linphone;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -114,6 +115,8 @@ public class MainActivity extends AppCompatActivity {
                 LinphoneManager.AddressType address = new AddressText(MainActivity.this, null);
                 address.setText(to);
                 LinphoneManager.getInstance().newOutgoingCall(address);
+
+                startActivity(new Intent(MainActivity.this,IncallAct.class));
             }
         }
     };

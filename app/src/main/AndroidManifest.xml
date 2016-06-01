@@ -52,7 +52,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-
         <activity android:name=".SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -86,7 +85,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".LinphoneLauncherActivity"
             android:exported="true"
@@ -250,6 +249,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".InMyCallActivity" >
+        </activity>
+        <activity android:name=".IncallAct" >
         </activity>
     </application>
 
